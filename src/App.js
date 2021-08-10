@@ -2,7 +2,7 @@ import React, {useReducer} from 'react';
 import reducer, {initialState} from './reducers'
 
 import './App.css';
-import {addOne, applyNumber, changeOperation, clearDisplay} from './actions'
+import {addOne, applyNumber, changeOperation, clearDisplay, memoryValue, memoryRValue, memoryClear} from './actions'
 import TotalDisplay from './components/TotalDisplay';
 import CalcButton from './components/CalcButton';
 
@@ -21,9 +21,17 @@ const handleOperationClick=(operator)=>{
 const handleClearClick=()=>{
   dispatch(clearDisplay())
 }
-// const handleClick=()=>{
-//   dispatch(addOne(1))
-// }
+const handleMemoryClick=()=>{
+  dispatch(memoryValue())
+}
+
+const handleMemoryRClick=()=>{
+  dispatch(memoryRValue())
+}
+
+const handleMemoryClearClick=()=>{
+  dispatch(memoryClear())
+  }
 
   return (
     <div className="App">
@@ -42,9 +50,9 @@ const handleClearClick=()=>{
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton value={"M+"} onClick={()=>handleMemoryClick()}/>
+              <CalcButton value={"MR"} onClick={()=>handleMemoryRClick()}/>
+              <CalcButton value={"MC"} onClick={()=>handleMemoryClearClick()}/>
             </div>
 
             <div className="row">
